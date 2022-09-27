@@ -7,7 +7,8 @@ public class Airport
     public string Country { get; set; }
     public string City { get; set; }
 
-    [JsonPropertyName("airport")] public string AirportCode { get; set; }
+    [JsonPropertyName("airport")]
+    public string AirportCode { get; set; }
 
     public override bool Equals(object obj)
     {
