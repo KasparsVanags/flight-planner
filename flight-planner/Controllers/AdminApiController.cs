@@ -34,13 +34,15 @@ public class AdminApiController : ControllerBase
     [HttpDelete]
     public IActionResult DeleteFlight(int id)
     {
-        var flight = _context.Flights.FirstOrDefault(x => x.Id == id);
-        if (flight != null)
+        lock (DbLock)
         {
-            _context.Flights.Remove(flight);
-            _context.SaveChanges();
+            var flight = _context.Flights.FirstOrDefault(x => x.Id == id);
+            if (flight != null)
+            {
+                _context.Flights.Remove(flight);
+                _context.SaveChanges();
+            }
         }
-
 
         return Ok(id);
     }
