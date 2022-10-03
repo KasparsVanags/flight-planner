@@ -1,6 +1,7 @@
 using flight_planner.Validators;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace flight_planner.Controllers;
 
@@ -9,11 +10,22 @@ namespace flight_planner.Controllers;
 [Authorize]
 public class AdminApiController : ControllerBase
 {
+    private static readonly object DbLock = new();
+    private readonly FlightPlannerDbContext _context;
+
+    public AdminApiController(FlightPlannerDbContext context)
+    {
+        _context = context;
+    }
+
     [Route("flights/{id}")]
     [HttpGet]
     public IActionResult GetFlight(int id)
     {
-        var flight = FlightStorage.GetFlightById(id);
+        var flight = _context.Flights
+            .Include(x => x.From)
+            .Include(x => x.To)
+            .FirstOrDefault(x => x.Id == id);
         if (flight == null) return NotFound(id);
         return Ok(flight);
     }
@@ -22,7 +34,16 @@ public class AdminApiController : ControllerBase
     [HttpDelete]
     public IActionResult DeleteFlight(int id)
     {
-        FlightStorage.DeleteFlight(id);
+        lock (DbLock)
+        {
+            var flight = _context.Flights.FirstOrDefault(x => x.Id == id);
+            if (flight != null)
+            {
+                _context.Flights.Remove(flight);
+                _context.SaveChanges();
+            }
+        }
+
         return Ok(id);
     }
 
@@ -41,7 +62,14 @@ public class AdminApiController : ControllerBase
             return BadRequest(flight);
         }
 
-        if (FlightStorage.AddFlight(flight) == null) return Conflict(flight);
+        lock (DbLock)
+        {
+            var flights = _context.Flights.Include(x => x.From)
+                .Include(x => x.To).ToList();
+            if (flights.Any(x => x.Equals(flight))) return Conflict(flight);
+            _context.Flights.Add(flight);
+            _context.SaveChanges();
+        }
 
         return Created("", flight);
     }
