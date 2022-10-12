@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace flight_planner.Migrations
+namespace FlightPlanner.Data.Migrations
 {
     public partial class Init : Migration
     {
@@ -22,7 +22,7 @@ namespace flight_planner.Migrations
                 {
                     table.PrimaryKey("PK_Airports", x => x.Id);
                 });
-
+            
             migrationBuilder.CreateTable(
                 name: "Flights",
                 columns: table => new
@@ -43,13 +43,13 @@ namespace flight_planner.Migrations
                         column: x => x.FromId,
                         principalTable: "Airports",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Flights_Airports_ToId",
                         column: x => x.ToId,
                         principalTable: "Airports",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(

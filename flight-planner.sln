@@ -2,6 +2,12 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "flight-planner", "flight-planner\flight-planner.csproj", "{63FD93EB-5EE9-4C13-A632-2645A227D088}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner.Core", "FlightPlanner.Core\FlightPlanner.Core.csproj", "{2440A4B2-E808-4822-85A4-04505FDFABF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner.Data", "FlightPlanner.Data\FlightPlanner.Data.csproj", "{B41ECF95-188B-48E1-9814-99CABACDD08E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlightPlanner.Services", "FlightPlanner.Services\FlightPlanner.Services.csproj", "{996B146C-28F9-4477-AE02-0D1EF6D6A1C3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +18,17 @@ Global
 		{63FD93EB-5EE9-4C13-A632-2645A227D088}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63FD93EB-5EE9-4C13-A632-2645A227D088}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63FD93EB-5EE9-4C13-A632-2645A227D088}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2440A4B2-E808-4822-85A4-04505FDFABF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2440A4B2-E808-4822-85A4-04505FDFABF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2440A4B2-E808-4822-85A4-04505FDFABF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2440A4B2-E808-4822-85A4-04505FDFABF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B41ECF95-188B-48E1-9814-99CABACDD08E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B41ECF95-188B-48E1-9814-99CABACDD08E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B41ECF95-188B-48E1-9814-99CABACDD08E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B41ECF95-188B-48E1-9814-99CABACDD08E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{996B146C-28F9-4477-AE02-0D1EF6D6A1C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{996B146C-28F9-4477-AE02-0D1EF6D6A1C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{996B146C-28F9-4477-AE02-0D1EF6D6A1C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{996B146C-28F9-4477-AE02-0D1EF6D6A1C3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
