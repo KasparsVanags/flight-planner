@@ -41,8 +41,7 @@ public class CustomerApiController : ControllerBase
     {
         if (!_flightsRequestValidators.All(x => x.IsValid(request))) return BadRequest();
 
-        request.From = request.From.Trim().ToUpper();
-        request.To = request.To.Trim().ToUpper();
+        request = request.Format();
 
         return Ok(_flightService.SearchFlightsByRequest(request));
     }

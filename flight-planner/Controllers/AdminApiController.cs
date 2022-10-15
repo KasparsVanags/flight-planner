@@ -1,6 +1,6 @@
 using AutoMapper;
-using flight_planner.Extensions;
 using flight_planner.Models;
+using FlightPlanner.Core.Extensions;
 using FlightPlanner.Core.Models;
 using FlightPlanner.Core.Models.AirportValidators;
 using FlightPlanner.Core.Models.FlightValidators;
@@ -48,7 +48,12 @@ public class AdminApiController : ControllerBase
         lock (DbLock)
         {
             var flight = _flightService.GetById(id);
-            if (flight != null) _flightService.Delete(flight);
+            if (flight != null)
+            {
+                var result = _flightService.Delete(flight);
+                
+                if (!result.Success) return Problem(result.FormattedErrors);
+            }
         }
 
         return Ok(id);
@@ -65,20 +70,15 @@ public class AdminApiController : ControllerBase
             return BadRequest();
         }
 
-        flight.Carrier = flight.Carrier.Trim().Capitalize();
-        flight.From.City = flight.From.City.Trim().Capitalize();
-        flight.From.Country = flight.From.Country.Trim().Capitalize();
-        flight.From.AirportCode = flight.From.AirportCode.Trim().ToUpper();
-        flight.To.City = flight.To.City.Trim().Capitalize();
-        flight.To.Country = flight.To.Country.Trim().Capitalize();
-        flight.To.AirportCode = flight.To.AirportCode.Trim().ToUpper();
-
+        flight = flight.Format();
         lock (DbLock)
         {
             if (_flightService.Exists(flight)) return Conflict("Identical flight already exists");
-            _flightService.Create(flight);
+            var result = _flightService.Create(flight);
+            
+            if(!result.Success) return Problem(result.FormattedErrors);
         }
-
+        
         var response = _mapper.Map<FlightRequest>(flight);
         return Created("", response);
     }

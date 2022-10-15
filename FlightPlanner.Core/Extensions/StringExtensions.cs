@@ -1,4 +1,4 @@
-namespace flight_planner.Extensions;
+namespace FlightPlanner.Core.Extensions;
 
 public static class StringExtensions
 {
