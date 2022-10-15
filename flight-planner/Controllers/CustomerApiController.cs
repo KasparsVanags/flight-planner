@@ -32,6 +32,7 @@ public class CustomerApiController : ControllerBase
         if (!airports.Any()) return NotFound();
         
         var response = airports.Select(x => _mapper.Map<AirportRequest>(x)).ToList();
+        
         return Ok(response);
     }
 
@@ -54,6 +55,7 @@ public class CustomerApiController : ControllerBase
         if (flight == null) return NotFound(id);
 
         var response = _mapper.Map<FlightRequest>(flight);
+        
         return Ok(response);
     }
 }

@@ -9,6 +9,7 @@ public static class AirportFormatter
         airport.City = airport.City.Trim().Capitalize();
         airport.Country = airport.Country.Trim().Capitalize();
         airport.AirportCode = airport.AirportCode.Trim().ToUpper();
+        
         return airport;
     }
 }

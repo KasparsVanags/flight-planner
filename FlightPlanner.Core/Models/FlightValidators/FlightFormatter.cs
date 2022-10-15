@@ -10,6 +10,7 @@ public static class FlightFormatter
         flight.Carrier = flight.Carrier.Trim().Capitalize();
         flight.From = flight.From.Format();
         flight.To = flight.To.Format();
+        
         return flight;
     }
 }

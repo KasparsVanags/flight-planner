@@ -6,6 +6,7 @@ public static class RequestFormatter
     {
         request.From = request.From.Trim().ToUpper();
         request.To = request.To.Trim().ToUpper();
+        
         return request;
     }
 }

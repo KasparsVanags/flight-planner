@@ -38,6 +38,7 @@ public class AdminApiController : ControllerBase
         if (flight == null) return NotFound(id);
         
         var response = _mapper.Map<FlightRequest>(flight);
+        
         return Ok(response);
     }
 
@@ -80,6 +81,7 @@ public class AdminApiController : ControllerBase
         }
         
         var response = _mapper.Map<FlightRequest>(flight);
+        
         return Created("", response);
     }
 }

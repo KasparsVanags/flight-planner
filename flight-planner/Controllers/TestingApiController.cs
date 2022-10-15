@@ -19,6 +19,7 @@ public class TestingApiController : ControllerBase
     public IActionResult Clear()
     {
         _flightService.DeleteAll();
+        
         return Ok();
     }
 }
