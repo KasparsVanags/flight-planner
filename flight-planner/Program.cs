@@ -1,5 +1,6 @@
 using flight_planner;
 using flight_planner.Filters;
+using flight_planner.Models.SearchFlightsRequestValidators;
 using FlightPlanner.Core.Models;
 using FlightPlanner.Core.Models.AirportValidators;
 using FlightPlanner.Core.Models.FlightValidators;

@@ -1,5 +1,6 @@
 using AutoMapper;
 using flight_planner.Models;
+using flight_planner.Models.SearchFlightsRequestValidators;
 using FlightPlanner.Core.Models;
 using FlightPlanner.Core.Models.SearchFlightsRequestValidators;
 using FlightPlanner.Core.Services;
@@ -44,7 +45,7 @@ public class CustomerApiController : ControllerBase
 
         request = request.Format();
 
-        return Ok(_flightService.SearchFlightsByRequest(request));
+        return Ok(_flightService.SearchFlightsByRequest(request.From, request.To, request.DepartureDate));
     }
 
     [Route("flights/{id}")]

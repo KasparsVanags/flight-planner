@@ -1,3 +1,5 @@
+using flight_planner.Models;
+
 namespace FlightPlanner.Core.Models.SearchFlightsRequestValidators;
 
 public static class RequestFormatter

@@ -1,4 +1,4 @@
-namespace FlightPlanner.Core.Models.SearchFlightsRequestValidators;
+namespace flight_planner.Models.SearchFlightsRequestValidators;
 
 public class RequestAirportValidator : ISearchFlightsRequestValidator
 {

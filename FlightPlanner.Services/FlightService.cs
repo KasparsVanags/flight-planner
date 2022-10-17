@@ -36,16 +36,16 @@ public class FlightService : EntityService<Flight>, IFlightService
         return results.DistinctBy(x => x.AirportCode).ToList();
     }
 
-    public PageResult SearchFlightsByRequest(SearchFlightsRequest request)
+    public PageResult SearchFlightsByRequest(string from, string to, string departure)
     {
         return new PageResult
         {
             Items = _context.Flights
                 .Include(x => x.From)
                 .Include(x => x.To).ToList()
-                .Where(x => x.From.AirportCode == request.From &&
-                            x.To.AirportCode == request.To &&
-                            DateTime.Parse(x.DepartureTime).Date == DateTime.Parse(request.DepartureDate).Date)
+                .Where(x => x.From.AirportCode == from &&
+                            x.To.AirportCode == to &&
+                            DateTime.Parse(x.DepartureTime).Date == DateTime.Parse(departure).Date)
                 .ToList()
         };
     }
